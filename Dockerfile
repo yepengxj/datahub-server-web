@@ -51,7 +51,7 @@ ADD . ./webapps
 
 RUN cd  ./webapps/ \
     && mvn  install \
-    && mv ./target/Datahub-1.0-SNAPSHOT/* .
+    && mv ./target/* .
 
 CMD ["./webapps/start.sh"]
 
