@@ -51,7 +51,8 @@ ADD . ./webapps
 
 RUN cd  ./webapps/ \
     && mvn  install \
-    && mv ./target/Datahub-1.0-SNAPSHOT/* .
+    && mv ./server.xml /usr/local/tomcat/conf/ \
+    && mv ./target/Datahub-1.0-SNAPSHOT .
 
 CMD ["./webapps/start.sh"]
 
