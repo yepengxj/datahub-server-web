@@ -177,7 +177,7 @@
                     <!-- <li role="presentation"><a href="#" name="山东数据">山东数据</a></li>
                     <li role="presentation"><a href="#" name="IMEI库">IMEI库</a></li> -->
                     <c:forEach var="dataItem"  items="${listDataItem}">                   
-                    <li role="presentation"><a href="#"  id="${dataItem.dataitemId}"><c:out value="${dataItem.dataitemName}"/> </a></li>
+                    <li role="presentation"><a href="#"  id="${dataItem.dataitemId}" class="teclass" ><c:out value="${dataItem.dataitemName}"/> </a></li>
                       </c:forEach>
                 </ul>
             </div>
@@ -261,12 +261,10 @@
 <script type="text/javascript">
     var downDataitemId = "";
     $(function () {
-    	var id = '#'+${detailDataitemId};
-    	 
-    	$(id).trigger("click");
     	
-        $('#dataitemUi  a').click(function (e) { 
-        	
+     
+        //$('#dataitemUi  a').click(function (e) { 
+        	$('.teclass').click(function (e) {
         	 downDataitemId=$(this).attr("id"); 
              //alert(downDataitemId);
         	 var url=host+"/datahub/dataItemMgrAction!queryDataitem.action"  ; 
@@ -296,7 +294,7 @@
                
                     	 strHtml+="<div class='row'><div  class='col-md-4'>"+dateList[i].fieldRawname+"</div><div  class='col-md-8'>"+dateList[i].fieldName+"</div></div>"                     
                      });
-          
+          			
                      $("#dataScope").html(strHtml); 
                     
          		}
@@ -315,7 +313,7 @@
          			$.each(dateList,function(i){  
          		 
          				var items = $('<input id="' + dateList[i].dataitemId + '" name="'+ dateList[i].dataDate + '" type="button" onclick="downLoad('+'\''+dateList[i].dataitemId+ '\',\'' + dateList[i].dataDate + '\')"  value="'+ dateList[i].dataDate+'"/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>');
-         				
+         				//alert('<input id="' + dateList[i].dataitemId + '" name="'+ dateList[i].dataDate + '" type="button" onclick="downLoad('+'\''+dateList[i].dataitemId+ '\',\'' + dateList[i].dataDate + '\')"  value="'+ dateList[i].dataDate+'"/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>');
          				 $("#downloadItems").append(items);
                   	}); 
          	    }
@@ -341,7 +339,9 @@
         	$("#home").removeClass('active');
         	$("#filetypeLi").removeClass('active');
         })
-         
+        var id = '#'+${detailDataitemId};
+        $(id).trigger("click");
+    	 
     });
     //数据下载功能
      function downLoad(dataitemId,dataDate4){ 

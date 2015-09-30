@@ -1,29 +1,19 @@
-	modified:   Dockerfile
-	modified:   log.txt
-	modified:   src/main/java/com/asiainfo/bdx/datahub/common/action/FileAction.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/action/DataItemMgrAction.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDataItemMgrDao.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DataItemMgrDaoImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/FieldDaoImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/UploadlogDaoImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/IDataItemMgrService.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/impl/DataItemMgrServiceImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/model/Dataitem.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/model/Uploadlog.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/DataItemsAction.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IDataItemsDao.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/DataItemsDaoImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IDataItemsService.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/DataItemsServiceImpl.java
-	modified:   src/main/resources/applicationContext.xml
-	modified:   src/main/resources/config.properties
-	modified:   src/main/resources/struts.xml
-	modified:   src/main/webapp/assets/css/global.css
-	new file:   src/main/webapp/img/test.png
-	modified:   src/main/webapp/index.jsp
-	modified:   src/main/webapp/login.html
-	modified:   src/main/webapp/my/baozang.jsp
+	new file:   src/main/webapp/img/GIS_map.png
+	new file:   src/main/webapp/img/app.png
+	new file:   src/main/webapp/img/bus.png
+	new file:   src/main/webapp/img/car_peccancy.png
+	new file:   src/main/webapp/img/face_identify.png
+	new file:   src/main/webapp/img/farming.png
+	new file:   src/main/webapp/img/film.png
+	new file:   src/main/webapp/img/industry_commerc.png
+	new file:   src/main/webapp/img/medicine.png
+	new file:   src/main/webapp/img/sell.png
+	new file:   src/main/webapp/img/sina_weibo.png
+	new file:   src/main/webapp/img/social.png
+	new file:   src/main/webapp/img/terminal.png
+	new file:   src/main/webapp/img/traffic.png
+	new file:   src/main/webapp/img/trip.png
+	new file:   src/main/webapp/img/unionpay.png
+	new file:   src/main/webapp/img/weather.png
 	modified:   src/main/webapp/my/baozangDetail.jsp
-	new file:   "src/main/webapp/my/main - \342\225\225\342\226\222\342\226\222\342\225\233.jsp"
-	modified:   src/main/webapp/my/main.jsp
 
