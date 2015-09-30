@@ -173,7 +173,7 @@
             <div class="col-md-2">
                 <div style="border-bottom:5px solid #2177c8;padding-bottom: 5px;margin-bottom: 20px;">数据宝藏</div>
                 <ul id="dataitemUi" class="nav nav-pills nav-stacked"  >
-                    <li class="active" role="presentation" ><a href="#" name="重庆数据">重庆数据</a></li>
+                    
                     <!-- <li role="presentation"><a href="#" name="山东数据">山东数据</a></li>
                     <li role="presentation"><a href="#" name="IMEI库">IMEI库</a></li> -->
                     <c:forEach var="dataItem"  items="${listDataItem}">                   
@@ -227,9 +227,11 @@
                 </div>
                 <br>
 
-             
+             <div> 
+                   <label>数据下载：&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <div id="downloadItems">
-					  <label>数据下载：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					  
+                </div>
                 </div>
                  
             </div>
@@ -260,13 +262,13 @@
     var downDataitemId = "";
     $(function () {
     	var id = '#'+${detailDataitemId};
-    	//alert(id);
-    	$(id).click();
+    	 
+    	$(id).trigger("click");
     	
         $('#dataitemUi  a').click(function (e) { 
         	
-        	downDataitemId=$(this).attr("id"); 
-         
+        	 downDataitemId=$(this).attr("id"); 
+             //alert(downDataitemId);
         	 var url=host+"/datahub/dataItemMgrAction!queryDataitem.action"  ; 
          	jQuery.ajax({
          		type: "POST",
@@ -308,6 +310,7 @@
          		data: {"dataitemId":$(this).attr("id")},
          		dataType: "json",
          		success: function(result) {
+         			 $("#downloadItems").html("");
          			var dateList = result[0].datas;
          			$.each(dateList,function(i){  
          		 
