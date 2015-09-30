@@ -16,10 +16,10 @@ public class UploadlogDaoImpl extends BaseJdbcDao  implements IUploadlogDao {
 	public void insertUploadlog(Uploadlog uploadlog) throws Exception {
 		String sql = "INSERT INTO DH_UPLOADLOG(" +
 				"DATAITEM_ID," +
-				"DATA_DATE) " +
-				"VALUES(?,?)";
+				"DATA_DATE,FILENAME) " +
+				"VALUES(?,?,?)";
 		Object[] params  = {uploadlog.getDataitemId(),
-				uploadlog.getDataDate()};
+				uploadlog.getDataDate(),uploadlog.getFileName()};
 		try{
 			getJdbcTemplate().update(sql, params);
 		}catch(Exception e){

@@ -25,8 +25,8 @@
                     	alert(data.message);
                     }else if(status == "1"){
                     	hideModal();
-                        alert("上传成功！");
                         showmyTrade();
+                    	alert("上传成功！");
                     }
                 },
                 error: function (data, status, e)//服务器响应失败处理函数
@@ -271,7 +271,7 @@
         var getBuybaozang = function () {
             $('#getMybaozang').parent().removeClass("active");
             $('#getBuybaozang').parent().addClass("active");
-            //console.info(2);
+            console.info(2);
             //var eachData = {datas:[{id:"名称5",desc:"描述55"},{id:"名称6",desc:"描述77"},{id:"名称7",desc:"描述99"}]};
             //var eachData1;
             $.get(host + "/datahub/dataItemsAction!dataitemTypeList.action?tradeType=" + 2, function (result) {
@@ -306,8 +306,8 @@
         $("#getMytrade").click(getMyTrade);
 
     });
-    function showmyTrade() {
-        $.get(host + "/datahub/dataItemsAction!dataitemList.action?keyword=" + '' + "&tradeType=" + '' + "&startTime=" + '' + "&endTime=" + '', function (result) {
+    function showmyTrade(){
+        $.get(host + "/datahub/dataItemsAction!dataitemList.action ", function (result) {
             var eachData3 = result;
             $("#trade-result tbody").empty();
             $("#trade-items").tmpl(eachData3).appendTo('#trade-result tbody');

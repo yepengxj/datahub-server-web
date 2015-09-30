@@ -27,7 +27,7 @@ public interface IDataItemMgrService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Dataitem queryDataitemById(Long dataitemId)
+	public String queryDataitemById(Long dataitemId)
 			throws Exception;
 	
 	/**
@@ -41,6 +41,6 @@ public interface IDataItemMgrService {
 	 * 记录上传数据文件日志
 	 * @throws Exception
 	 */
-	public void insertUploadLog(Dataitem dataitem)
+	public void insertUploadLog(Dataitem dataitem,String fileFileName)
 			throws Exception;
 }

@@ -172,7 +172,7 @@ public class FieldDaoImpl extends BaseJdbcDao implements IFieldDao {
 
 	public List<Field> queryFieldById(Long dataitemId) throws Exception {
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT  DISTINCT F.DATAITEM_ID, F.FIELD_ID,F.FIELD_RAWNAME,F.FIELD_NAME FROM DH_DATAITEM F WHERE F.DATAITEM_ID = ? ");
+		sb.append("SELECT  DISTINCT F.DATAITEM_ID, F.FIELD_ID,F.FIELD_RAWNAME,F.FIELD_NAME FROM DH_FIELD F WHERE F.DATAITEM_ID = ? ");
 		Object[] params  = new Object[]{dataitemId};
 		log.debug("FieldDaoImpl:queryFieldById:sql::" + sb.toString());
 		log.debug("FieldDaoImpl:queryFieldById:param::" + params);

@@ -1,235 +1,29 @@
 	modified:   Dockerfile
-	new file:   log.txt
-	modified:   pom.xml
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/AuthorityInterceptor.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/DHConstants.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/common/action/BaseAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/action/FileAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/util/Configure.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/util/MailUtil.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/util/Md5Util.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/common/util/RandomUtils.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/action/DataItemMgrAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDataItemMgrDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDownloadlogDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IFieldDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IUploadlogDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DataItemMgrDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DownloadlogDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/FieldDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/UploadlogDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/model/custom/DataitemDto.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/IDataItemMgrService.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/impl/DataItemMgrServiceImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/interceptor/SessionCheckInterceptor.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/login/action/UserAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/login/dao/IUserDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/login/dao/impl/UserDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/login/service/IUserService.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/login/service/impl/UserServiceImpl.java
+	modified:   log.txt
+	modified:   src/main/java/com/asiainfo/bdx/datahub/common/action/FileAction.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/action/DataItemMgrAction.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDataItemMgrDao.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DataItemMgrDaoImpl.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/FieldDaoImpl.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/UploadlogDaoImpl.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/IDataItemMgrService.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/impl/DataItemMgrServiceImpl.java
 	modified:   src/main/java/com/asiainfo/bdx/datahub/model/Dataitem.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/DataItemsAction.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/RepositoryMgrAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/ResSearchAction.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IDataItemsDao.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IRepositoryMgrDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IResSearchDao.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/DataItemsDaoImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/RepositoryMgrDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/ResSearchDaoImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IDataItemsService.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IRepositoryMgrService.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IResSearchService.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/DataItemsServiceImpl.java
-	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/RepositoryMgrServiceImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/ResSearchServiceImpl.java
-	new file:   src/main/java/com/asiainfo/bdx/datahub/utils/DHConstants.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/model/Uploadlog.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/DataItemsAction.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IDataItemsDao.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/DataItemsDaoImpl.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IDataItemsService.java
+	modified:   src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/DataItemsServiceImpl.java
 	modified:   src/main/resources/applicationContext.xml
 	modified:   src/main/resources/config.properties
-	new file:   src/main/resources/log4j.xml
 	modified:   src/main/resources/struts.xml
-	modified:   src/main/webapp/WEB-INF/web.xml
-	new file:   src/main/webapp/assets/css/bootstrap-datetimepicker.min.css
-	new file:   src/main/webapp/assets/css/bootstrap-theme.min.css
-	new file:   src/main/webapp/assets/css/bootstrap.min.css
-	new file:   src/main/webapp/assets/css/global.css
-	new file:   src/main/webapp/assets/fonts/glyphicons-halflings-regular.eot
-	new file:   src/main/webapp/assets/fonts/glyphicons-halflings-regular.svg
-	new file:   src/main/webapp/assets/fonts/glyphicons-halflings-regular.ttf
-	new file:   src/main/webapp/assets/fonts/glyphicons-halflings-regular.woff
-	new file:   src/main/webapp/assets/fonts/glyphicons-halflings-regular.woff2
-	new file:   src/main/webapp/assets/img/1.png
-	new file:   src/main/webapp/assets/img/6.png
-	new file:   src/main/webapp/assets/img/add.png
-	new file:   src/main/webapp/assets/img/asiainfo-logo.ico
-	new file:   src/main/webapp/assets/img/back.png
-	new file:   src/main/webapp/assets/img/back_hover.png
-	new file:   src/main/webapp/assets/img/banner.png
-	new file:   src/main/webapp/assets/img/clander.png
-	new file:   src/main/webapp/assets/img/close.png
-	new file:   src/main/webapp/assets/img/close_hover.png
-	new file:   src/main/webapp/assets/img/header-search.png
-	new file:   src/main/webapp/assets/img/header.png
-	new file:   src/main/webapp/assets/img/im2.png
-	new file:   src/main/webapp/assets/img/img3.png
-	new file:   src/main/webapp/assets/img/left_rec.png
-	new file:   src/main/webapp/assets/img/left_rec_hover.png
-	new file:   src/main/webapp/assets/img/location.png
-	new file:   src/main/webapp/assets/img/logo.png
-	new file:   src/main/webapp/assets/img/ny_03.png
-	new file:   src/main/webapp/assets/img/pass.png
-	new file:   src/main/webapp/assets/img/rec.png
-	new file:   src/main/webapp/assets/img/right_rec.png
-	new file:   src/main/webapp/assets/img/right_rec_hover.png
-	new file:   src/main/webapp/assets/img/user.png
-	new file:   src/main/webapp/assets/jquery/jquery-1.11.3.min.js
-	new file:   src/main/webapp/assets/jquery/jquery.tmpl.min.js
-	new file:   src/main/webapp/assets/js/bootstrap-datetimepicker.js
-	new file:   src/main/webapp/assets/js/bootstrap-datetimepicker.zh-CN.js
-	new file:   src/main/webapp/assets/js/bootstrap.min.js
-	new file:   src/main/webapp/common/common.jsp
-	new file:   src/main/webapp/common/header.jsp
-	new file:   src/main/webapp/common/upload/images/loading.gif
-	new file:   src/main/webapp/common/upload/js/ajaxfileupload.js
-	new file:   src/main/webapp/common/upload/js/jquery.dialog.js
-	new file:   src/main/webapp/common/upload/js/jquery.form.js
-	new file:   src/main/webapp/common/upload/js/jquery.js
-	new file:   src/main/webapp/common/upload/pubUpload.jsp
-	new file:   src/main/webapp/demo.jsp
-	new file:   src/main/webapp/editpass.html
-	new file:   src/main/webapp/forgetpass.html
-	new file:   src/main/webapp/index.html
+	modified:   src/main/webapp/assets/css/global.css
+	new file:   src/main/webapp/img/test.png
 	modified:   src/main/webapp/index.jsp
-	new file:   src/main/webapp/login.html
-	new file:   src/main/webapp/my/baozang.html
-	new file:   src/main/webapp/my/baozang.jsp
-	new file:   src/main/webapp/my/baozangDetail.html
-	new file:   src/main/webapp/my/baozangDetail.jsp
-	new file:   src/main/webapp/my/main.html
-	new file:   src/main/webapp/my/main.jsp
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/AuthorityInterceptor.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/DHConstants.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/action/BaseAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/action/FileAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/dao/BaseJdbcDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/util/Configure.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/util/MailUtil.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/util/Md5Util.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/common/util/RandomUtils.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/action/DataItemMgrAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDataItemMgrDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IDownloadlogDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IFieldDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/IUploadlogDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DataItemMgrDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/DownloadlogDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/FieldDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/dao/impl/UploadlogDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/model/custom/DataitemDto.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/IDataItemMgrService.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/dataitemmgr/service/impl/DataItemMgrServiceImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/interceptor/SessionCheckInterceptor.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/login/action/UserAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/login/dao/IUserDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/login/dao/impl/UserDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/login/service/IUserService.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/login/service/impl/UserServiceImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Currency.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Dataitem.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Denygroup.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Denyuser.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Downloadlog.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Field.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Order.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Permitgroup.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Permittype.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Permituser.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Priceunit.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Repository.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Supplystyle.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Uploadlog.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/User.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Userinfo.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Userlevel.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Userlist.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/model/Userstatus.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/DataItemsAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/RepositoryMgrAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/action/ResSearchAction.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IDataItemsDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IRepositoryMgrDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/IResSearchDao.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/DataItemsDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/RepositoryMgrDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/dao/impl/ResSearchDaoImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IDataItemsService.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IRepositoryMgrService.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/IResSearchService.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/DataItemsServiceImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/RepositoryMgrServiceImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/repositorymgr/service/impl/ResSearchServiceImpl.java
-	new file:   src/src/main/java/com/asiainfo/bdx/datahub/utils/DHConstants.java
-	new file:   src/src/main/resources/applicationContext.xml
-	new file:   src/src/main/resources/config.properties
-	new file:   src/src/main/resources/hibernate.cfg.xml
-	new file:   src/src/main/resources/log4j.xml
-	new file:   src/src/main/resources/struts.xml
-	new file:   src/src/main/webapp/WEB-INF/web.xml
-	new file:   src/src/main/webapp/assets/css/bootstrap-datetimepicker.min.css
-	new file:   src/src/main/webapp/assets/css/bootstrap-theme.min.css
-	new file:   src/src/main/webapp/assets/css/bootstrap.min.css
-	new file:   src/src/main/webapp/assets/fonts/glyphicons-halflings-regular.eot
-	new file:   src/src/main/webapp/assets/fonts/glyphicons-halflings-regular.svg
-	new file:   src/src/main/webapp/assets/fonts/glyphicons-halflings-regular.ttf
-	new file:   src/src/main/webapp/assets/fonts/glyphicons-halflings-regular.woff
-	new file:   src/src/main/webapp/assets/fonts/glyphicons-halflings-regular.woff2
-	new file:   src/src/main/webapp/assets/img/1.png
-	new file:   src/src/main/webapp/assets/img/6.png
-	new file:   src/src/main/webapp/assets/img/add.png
-	new file:   src/src/main/webapp/assets/img/asiainfo-logo.ico
-	new file:   src/src/main/webapp/assets/img/back.png
-	new file:   src/src/main/webapp/assets/img/back_hover.png
-	new file:   src/src/main/webapp/assets/img/banner.png
-	new file:   src/src/main/webapp/assets/img/clander.png
-	new file:   src/src/main/webapp/assets/img/close.png
-	new file:   src/src/main/webapp/assets/img/close_hover.png
-	new file:   src/src/main/webapp/assets/img/header-search.png
-	new file:   src/src/main/webapp/assets/img/header.png
-	new file:   src/src/main/webapp/assets/img/im2.png
-	new file:   src/src/main/webapp/assets/img/img3.png
-	new file:   src/src/main/webapp/assets/img/left_rec.png
-	new file:   src/src/main/webapp/assets/img/left_rec_hover.png
-	new file:   src/src/main/webapp/assets/img/location.png
-	new file:   src/src/main/webapp/assets/img/logo.png
-	new file:   src/src/main/webapp/assets/img/ny_03.png
-	new file:   src/src/main/webapp/assets/img/pass.png
-	new file:   src/src/main/webapp/assets/img/rec.png
-	new file:   src/src/main/webapp/assets/img/right_rec.png
-	new file:   src/src/main/webapp/assets/img/right_rec_hover.png
-	new file:   src/src/main/webapp/assets/img/user.png
-	new file:   src/src/main/webapp/assets/jquery/jquery-1.11.3.min.js
-	new file:   src/src/main/webapp/assets/jquery/jquery.tmpl.min.js
-	new file:   src/src/main/webapp/assets/js/bootstrap-datetimepicker.js
-	new file:   src/src/main/webapp/assets/js/bootstrap-datetimepicker.zh-CN.js
-	new file:   src/src/main/webapp/assets/js/bootstrap.min.js
-	new file:   src/src/main/webapp/common/common.jsp
-	new file:   src/src/main/webapp/common/header.jsp
-	new file:   src/src/main/webapp/common/upload/images/loading.gif
-	new file:   src/src/main/webapp/common/upload/js/ajaxfileupload.js
-	new file:   src/src/main/webapp/common/upload/js/jquery.dialog.js
-	new file:   src/src/main/webapp/common/upload/js/jquery.form.js
-	new file:   src/src/main/webapp/common/upload/js/jquery.js
-	new file:   src/src/main/webapp/common/upload/pubUpload.jsp
-	new file:   src/src/main/webapp/demo.jsp
-	new file:   src/src/main/webapp/editpass.html
-	new file:   src/src/main/webapp/forgetpass.html
-	new file:   src/src/main/webapp/index.html
-	new file:   src/src/main/webapp/index.jsp
-	new file:   src/src/main/webapp/login.html
-	new file:   src/src/main/webapp/my/baozang.html
-	new file:   src/src/main/webapp/my/baozang.jsp
-	new file:   src/src/main/webapp/my/baozangDetail.html
-	new file:   src/src/main/webapp/my/baozangDetail.jsp
-	new file:   src/src/main/webapp/my/main.html
-	new file:   src/src/main/webapp/my/main.jsp
+	modified:   src/main/webapp/login.html
+	modified:   src/main/webapp/my/baozang.jsp
+	modified:   src/main/webapp/my/baozangDetail.jsp
+	new file:   "src/main/webapp/my/main - \342\225\225\342\226\222\342\226\222\342\225\233.jsp"
+	modified:   src/main/webapp/my/main.jsp
 

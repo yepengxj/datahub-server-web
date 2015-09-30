@@ -183,11 +183,11 @@
         </div>
     </footer>
 </div>
-
+<!-- <div style="margin-bottom:10px" class="col-xs-6 col-md-6 item-image"><a href="./baozangDetail.action?id=${'${'}data.dataitemId}" class="col-xs-5 col-md-5"><img class="btn btn-link baozang" name="${'${'}data.id}" src="../assets/img/ny_03.png"></a><span class="col-xs-7 col-md-7">${'${'}data.dataitemName}<br>${'${'}data.comment}</span></div> -->
 </body>
 <script id="baozang-item" type="text/x-jquery-tmpl">
-		{{each(i,data) datas}}
-			<div style="margin-bottom:10px" class="col-xs-6 col-md-6 item-image"><a href="./baozangDetail.jsp?id=${'${'}data.id}" class="col-xs-5 col-md-5"><img class="btn btn-link baozang" name="${'${'}data.id}" src="../assets/img/ny_03.png"></a><span class="col-xs-7 col-md-7">${'${'}data.dataitemName}<br>${'${'}data.comment}</span></div>
+		{{each(i,data) datas}} 
+			<div style="margin-bottom:10px" class="col-xs-6 col-md-6 item-image"><a href="<%=basePath%>/datahub/dataItemsAction!baozangDetail.action?detailDataitemId=${'${'}data.dataitemId}" class="col-xs-5 col-md-5"><img class="btn btn-link baozang" name="${'${'}data.dataitemId}" src="../img/${'${'}data.icoName}"></a><span class="col-xs-7 col-md-7">${'${'}data.dataitemName}<br>${'${'}data.comment}</span></div>
 		{{/each}}
        
 </script>
@@ -206,7 +206,7 @@
         		data: {"keyword":$('#kw').val()},
         		dataType: "json",
         		success: function(result) { 
-        			
+        			 
         			$("#baozang-items").empty();
                     $("#baozang-item").tmpl(result).appendTo('#baozang-items');  
         		}
@@ -222,6 +222,11 @@
 		$('#su').click(function(){
 			getMybaozang();
 		});
+        function baozangDetail(){
+       
+        	window.location =host+'/datahub/dataItemsAction!baozangDetail.action'; 
+        } 
+		 
     });
 </script>
 </html>

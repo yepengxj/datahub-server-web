@@ -67,11 +67,11 @@ public class DataItemsServiceImpl implements IDataItemsService {
 	 * @see com.asiainfo.bdx.datahub.repositorymgr.service.IDataItemsService#
 	 * dataitemTypeList(java.lang.String, java.lang.String)
 	 */
-	public List<Dataitem> dataitemTypeList(String tradeType, String userId)
+	public List<Dataitem> dataitemTypeList(String tradeType, String userId,String dataitemId)
 			throws Exception {
 		List<Dataitem> list = null;
 		if (tradeType.equals(DHConstants.DOWNDLOAD_FLAG)) {
-			list = dataItems.getDataItemsByDownload(userId);
+			list = dataItems.getDataItemsByDownload(userId,dataitemId);
 		} else {
 			list = dataItems.getDataItemsByUpload(userId);
 		}

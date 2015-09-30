@@ -99,7 +99,7 @@ public class DataItemsDaoImpl extends BaseJdbcDao implements IDataItemsDao {
 	public List<Dataitem> getDataItemsByUpload(String userId) throws Exception {
 		List params = new ArrayList();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT  DISTINCT A.DATAITEM_ID, A.DATAITEM_NAME,A.COMMENT FROM DH_DATAITEM A,DH_UPLOADLOG B WHERE A.DATAITEM_ID=B.DATAITEM_ID ");
+		sb.append("SELECT  DISTINCT A.DATAITEM_ID, A.ICO_NAME,A.DATAITEM_NAME,A.COMMENT FROM DH_DATAITEM A,DH_UPLOADLOG B WHERE A.DATAITEM_ID=B.DATAITEM_ID ");
 		if (StringUtils.isNotEmpty(userId)) {
 			sb.append("AND  A.USER_ID=?                                                                                                          ");
 			params.add(userId);
@@ -121,15 +121,25 @@ public class DataItemsDaoImpl extends BaseJdbcDao implements IDataItemsDao {
 	 * @throws Exception
 	 */
 
-	public List<Dataitem> getDataItemsByDownload(String userId)
+	public List<Dataitem> getDataItemsByDownload(String userId,String dataitemId)
 			throws Exception {
 		List params = new ArrayList();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT DISTINCT A.DATAITEM_ID, A.DATAITEM_NAME,A.COMMENT FROM DH_DATAITEM A,DH_DOWNLOADLOG B WHERE A.DATAITEM_ID=B.DATAITEM_ID ");
+		if (StringUtils.isNotEmpty(dataitemId)) {
+			sb.append("SELECT DISTINCT B.DATA_DATE ,A.DATAITEM_ID, A.DATAITEM_NAME,A.ICO_NAME, A.COMMENT FROM DH_DATAITEM A,DH_UPLOADLOG B WHERE A.DATAITEM_ID=B.DATAITEM_ID ");
+		}else{
+			sb.append("SELECT DISTINCT B.DATA_DATE ,A.DATAITEM_ID, A.DATAITEM_NAME,A.ICO_NAME, A.COMMENT FROM DH_DATAITEM A,DH_DOWNLOADLOG B WHERE A.DATAITEM_ID=B.DATAITEM_ID ");
+		}
+		
 		if (StringUtils.isNotEmpty(userId)) {
-			sb.append("AND B.DOWN_USER=?                                                                                                          ");
+			sb.append("AND B.DOWN_USER=?  ");
 			params.add(userId);
 		}
+		if (StringUtils.isNotEmpty(dataitemId)) {
+			sb.append("AND A.DATAITEM_ID=?  ");
+			params.add(dataitemId);
+		}
+		
 		log.debug("DataItemsDaoImpl:getDataItemsByDownload:sql::"
 				+ sb.toString());
 		log.debug("DataItemsDaoImpl:getDataItemsByDownload:param::"
@@ -162,6 +172,7 @@ public class DataItemsDaoImpl extends BaseJdbcDao implements IDataItemsDao {
 					public Object mapRow(ResultSet rs, int arg1)
 							throws SQLException {
 						Dataitem item = new Dataitem();
+						item.setIcoName(rs.getString("ico_name"));
 					    item.setDataitemName(rs.getString("dataitem_name"));
 						item.setComment(rs.getString("comment"));
 						item.setRepositoryId(rs.getLong("repository_id"));

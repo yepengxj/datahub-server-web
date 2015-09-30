@@ -84,7 +84,7 @@ public class DataItemMgrDaoImpl extends BaseJdbcDao implements IDataItemMgrDao{
 	public Dataitem queryDateitemById(Long userId,Long repositoryId,Long dataitemId) throws Exception {
 		List params = new ArrayList();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT DISTINCT A.DATAITEM_ID, A.DATAITEM_NAME,A.COMMENT FROM DH_DATAITEM A WHERE A.DATAITEM_ID = ? ");
+		sb.append("SELECT * FROM DH_DATAITEM A WHERE 1=1 ");
 		if (userId != 0l) {
 			sb.append("AND A.DOWN_USER = ? ");                                                                                                         
 			params.add(userId);
@@ -104,15 +104,17 @@ public class DataItemMgrDaoImpl extends BaseJdbcDao implements IDataItemMgrDao{
 	}
 
 	
-	public Dataitem queryDateitemById(Long dataitemId) throws Exception {
-		List params = new ArrayList();
+	public String queryDateitemById(Long dataitemId) throws Exception {
+		//List params = new ArrayList();
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT DISTINCT A.DATAITEM_ID, A.DATAITEM_NAME,A.COMMENT FROM DH_DATAITEM A WHERE A.DATAITEM_ID = ? ");
-		params.add(dataitemId);
+		//sb.append("SELECT DISTINCT A.DATAITEM_ID, A.DATAITEM_NAME,A.COMMENT, A.SAMPLE_FILENAME FROM DH_DATAITEM A WHERE A.DATAITEM_ID = ? ");
+		sb.append("SELECT  DISTINCT  FILENAME FROM datahub.DH_UPLOADLOG  A  WHERE A.DATAITEM_ID =  ? ");
+		//params.add(dataitemId);
 		log.debug("DataItemMgrDaoImpl:queryDateitemById:sql::" + sb.toString());
-		log.debug("DataItemMgrDaoImpl:queryDateitemById:param::" + params.toArray().toString());
-		List<Dataitem> list = getJdbcTemplate().query(sb.toString(), ParameterizedBeanPropertyRowMapper.newInstance(Dataitem.class), params.toArray());
-		return list.get(0);
+		log.debug("DataItemMgrDaoImpl:queryDateitemById:param::" + dataitemId);
+		return getJdbcTemplate().queryForObject(sb.toString(), new Object[] {dataitemId}, java.lang.String.class );
+		//List<String> list = getJdbcTemplate().query(sb.toString(), ParameterizedBeanPropertyRowMapper.newInstance(String.class), params.toArray());
+		//return list.get(0);
 	}
 	
 	/* (non-Javadoc)

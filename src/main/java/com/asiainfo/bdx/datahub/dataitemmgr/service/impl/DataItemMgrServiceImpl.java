@@ -1,6 +1,7 @@
 package com.asiainfo.bdx.datahub.dataitemmgr.service.impl;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import com.asiainfo.bdx.datahub.common.DHConstants;
 import com.asiainfo.bdx.datahub.dataitemmgr.dao.IDataItemMgrDao;
 import com.asiainfo.bdx.datahub.dataitemmgr.dao.IFieldDao;
 import com.asiainfo.bdx.datahub.dataitemmgr.dao.IUploadlogDao;
@@ -87,6 +89,15 @@ public class DataItemMgrServiceImpl implements IDataItemMgrService{
 			Long dataitemId) throws Exception {
 		DataitemDto dataitemDto = new DataitemDto();
 		dataitemDto.setDataitem(dataItemMgrDao.queryDateitemById(userId,repositoryId,dataitemId));
+		Dataitem dataitem=dataitemDto.getDataitem();
+		//更新周期
+		dataitem.setRefreshType(DHConstants.REFRESHTYPE.PER_MONTH);
+		
+		//最新周期
+		dataitem.setRefreshDate(new Date());
+				
+		//获取方式
+		dataitem.setSupplyStyle(DHConstants.SUPPLYSTYLE.BATCH);
 		dataitemDto.setFields(fieldDao.queryFieldById(dataitemId));
 		return dataitemDto;
 	}
@@ -96,7 +107,7 @@ public class DataItemMgrServiceImpl implements IDataItemMgrService{
 	 * @see com.asiainfo.bdx.datahub.dataitemmgr.service.IDataItemMgrService#queryDataitemDtoById(java.lang.Long)
 	 */
 	
-	public Dataitem queryDataitemById(Long dataitemId) throws Exception {
+	public String queryDataitemById(Long dataitemId) throws Exception {
 		return dataItemMgrDao.queryDateitemById(dataitemId);
 	}
 
@@ -106,12 +117,13 @@ public class DataItemMgrServiceImpl implements IDataItemMgrService{
 	 * @see com.asiainfo.bdx.datahub.dataitemmgr.service.IDataItemMgrService#writeUploadLog()
 	 */
 	
-	public void insertUploadLog(Dataitem dataitem) throws Exception {
+	public void insertUploadLog(Dataitem dataitem,String filePath) throws Exception {
 		dataItemMgrDao.afterUploadFile(dataitem);
 		
 		Uploadlog uploadlog = new Uploadlog();
 		uploadlog.setDataitemId(dataitem.getDataitemId());
 		uploadlog.setDataDate(new Timestamp(System.currentTimeMillis()));
+		uploadlog.setFileName(filePath);
 		uploadlogDao.insertUploadlog(uploadlog);
 	}
 }

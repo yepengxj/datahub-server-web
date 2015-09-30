@@ -18,6 +18,7 @@ public class Dataitem implements java.io.Serializable {
 	private Long userId;
 	private Long dataitemId;
 	private String dataitemName;
+	private String icoName;
 	private String tag;
 	private Integer permitType;
 	private Integer supplyStyle;
@@ -62,13 +63,14 @@ public class Dataitem implements java.io.Serializable {
 
 	/** full constructor */
 	public Dataitem(Long repositoryId, Long userId, Long dataitemId,
-			String dataitemName, String tag, Integer permitType,
+			String dataitemName,String icoName, String tag, Integer permitType,
 			Integer supplyStyle, Long priceunitType, Double price, Date optime,String fileType,
 			Integer refreshType,Date refreshDate, String sampleFilename, String comment) {
 		this.repositoryId = repositoryId;
 		this.userId = userId;
 		this.dataitemId = dataitemId;
 		this.dataitemName = dataitemName;
+		this.icoName = icoName;
 		this.tag = tag;
 		this.permitType = permitType;
 		this.supplyStyle = supplyStyle;
@@ -116,6 +118,20 @@ public class Dataitem implements java.io.Serializable {
 		this.dataitemName = dataitemName;
 	}
 
+	/**
+	 * @return the icoName
+	 */
+	public String getIcoName() {
+		return icoName;
+	}
+
+	/**
+	 * @param icoName the icoName to set
+	 */
+	public void setIcoName(String icoName) {
+		this.icoName = icoName;
+	}
+	
 	public String getTag() {
 		return this.tag;
 	}

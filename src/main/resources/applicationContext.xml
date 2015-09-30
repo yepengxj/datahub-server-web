@@ -143,7 +143,7 @@
     <bean name="authorityInterceptor"
           class="com.asiainfo.bdx.datahub.common.AuthorityInterceptor">
         <property name="excludedUrl"
-                  value=".*index.jsp.*;.*login.*;.*verifyUser.jsp.*;.*/sendpwd.jsp.*;.*/showValidateCode.*;.*/services/.*;.*/css/.*;.*/jscript/.*;.*/images/.*;.*/dwr/.*;.*\.js;.*\.css;.*\.gif;.*\.png;.*\.bmp;.*\.swf;.*\.jpg;.*\.ico"/>
+                  value=".*index.jsp.*;.*login.*;.*queryDataitem.*;.*baozang.*;.*dataitemDown.*;.*search.*;.*verifyUser.jsp.*;.*/sendpwd.jsp.*;.*/showValidateCode.*;.*/services/.*;.*/css/.*;.*/jscript/.*;.*/images/.*;.*/dwr/.*;.*\.js;.*\.css;.*\.gif;.*\.png;.*\.bmp;.*\.swf;.*\.jpg;.*\.ico"/>
     </bean>
 
 </beans>

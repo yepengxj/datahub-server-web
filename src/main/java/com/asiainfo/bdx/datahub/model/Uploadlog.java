@@ -16,6 +16,7 @@ public class Uploadlog implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long dataitemId;
 	private Timestamp dataDate;
+	private String fileName;
 
 	// Constructors
 
@@ -24,9 +25,10 @@ public class Uploadlog implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Uploadlog(Long dataitemId, Timestamp dataDate) {
+	public Uploadlog(Long dataitemId, Timestamp dataDate,String fileName) {
 		this.dataitemId = dataitemId;
 		this.dataDate = dataDate;
+		this.fileName = fileName;
 	}
 
 	// Property accessors
@@ -47,5 +49,18 @@ public class Uploadlog implements java.io.Serializable {
 		this.dataDate = dataDate;
 	}
 
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 }

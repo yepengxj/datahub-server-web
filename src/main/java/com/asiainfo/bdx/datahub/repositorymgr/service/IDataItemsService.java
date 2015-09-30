@@ -21,7 +21,7 @@ public interface IDataItemsService {
 	 * @return
 	 * @throws Exception
 	 */ 
-	public List<Dataitem> dataitemTypeList(String tradeType,String userId) throws Exception ;
+	public List<Dataitem> dataitemTypeList(String tradeType,String userId,String dataitemId) throws Exception ;
 	 
 	/**
 	 * 根据关键字查询数据宝藏

@@ -161,8 +161,8 @@
 <div class="main-nav-bg"></div>
 <div class="main-nav"><img alt="" src="../assets/img/location.png">&nbsp;您当前的位置：
 		<span class="breadcrumb" style="background-color:white;padding:0px">
-	  		<li><a href="../index.html">首页</a></li>
-	  		<li><a href="baozang.html">数据宝藏</a></li>
+	  		<li><a href="../index.jsp">首页</a></li>
+	  		<li><a href="../my/baozang.jsp">数据宝藏</a></li>
 	  		<li>宝藏下载</li>
 		</span>
 </div>
@@ -172,51 +172,66 @@
         <div class="row">
             <div class="col-md-2">
                 <div style="border-bottom:5px solid #2177c8;padding-bottom: 5px;margin-bottom: 20px;">数据宝藏</div>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active" role="presentation"><a href="#" name="重庆数据">重庆数据</a></li>
-                    <li role="presentation"><a href="#" name="山东数据">山东数据</a></li>
-                    <li role="presentation"><a href="#" name="IMEI库">IMEI库</a></li>
+                <ul id="dataitemUi" class="nav nav-pills nav-stacked"  >
+                    <li class="active" role="presentation" ><a href="#" name="重庆数据">重庆数据</a></li>
+                    <!-- <li role="presentation"><a href="#" name="山东数据">山东数据</a></li>
+                    <li role="presentation"><a href="#" name="IMEI库">IMEI库</a></li> -->
+                    <c:forEach var="dataItem"  items="${listDataItem}">                   
+                    <li role="presentation"><a href="#"  id="${dataItem.dataitemId}"><c:out value="${dataItem.dataitemName}"/> </a></li>
+                      </c:forEach>
                 </ul>
             </div>
             <div class="col-md-10">
-                <div>重庆数据</div>
-                <div class="row">
+                <div id="detail_item_name">重庆数据</div>
+                <div class="row"> 
                     <div class="col-md-4">
-                        <img src="../assets/img/im2.png">
+                        <img id="detailImg" src="../assets/img/im2.png">
                     </div>
-                    <div class="col-md-8">
+                    <div id="dataitemDesc" class="col-md-8">
                         描述
                     </div>
                 </div>
                 <div>
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                        <li id="filetypeLi"  role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                                                                   data-toggle="tab">文件格式</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">数据口径</a>
+                        <li id="dataScopeLi" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">数据口径</a>
                         </li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
-                                                   data-toggle="tab">数据样例</a></li>
+                       <!--  <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
+                                                   data-toggle="tab">数据样例</a></li> -->
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
                             <div class="row">
-                                <div class="col-md-4">文件格式</div>
-                                <div class="col-md-8">excel</div>
+                                <div  class="col-md-4">文件格式</div>
+                                <div id="fileTypeId" class="col-md-8"></div>
+                            </div>
+                            <div class="row">
+                                <div  class="col-md-4">更新周期</div>
+                                <div id="refreshTypeId" class="col-md-8"></div>
+                            </div>
+                            <div class="row">
+                                <div  class="col-md-4">最新周期</div>
+                                <div id="refreshDateId" class="col-md-8"></div>
+                            </div>
+                            <div class="row">
+                                <div  class="col-md-4">获取方式</div>
+                                <div id="supplyStyleId" class="col-md-8"></div>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">22</div>
-                        <div role="tabpanel" class="tab-pane" id="messages">33</div>
+                        <div id="dataScope"  role="tabpanel" class="tab-pane"  > 
+						</div>
+                       <!--  <div id="sampleFilename" role="tabpanel" class="tab-pane" id="messages">33</div> -->
                     </div>
                 </div>
                 <br>
 
-                <div>
-                    数据下载
+             
+                <div id="downloadItems">
+					  <label>数据下载：&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 </div>
-                <div>
-
-                </div>
+                 
             </div>
         </div>
     </div>
@@ -237,16 +252,99 @@
 </body>
 <script id="baozang-item" type="text/x-jquery-tmpl">
 		{{each(i,data) datas}}
-			<div style="margin-bottom:10px" class="col-xs-6 col-md-6 item-image"><a href="./baozangDetail.html?id=${data.id}" class="col-xs-5 col-md-5"><img class="btn btn-link baozang" name="${data.id}" src="../assets/img/ny_03.png"></a><span class="col-xs-7 col-md-7">${data.id}<br>${data.desc}</span></div>
+			<div style="margin-bottom:10px" class="col-xs-6 col-md-6 item-image"><a href="./baozangDetail.html?id=${data.id}" class="col-xs-5 col-md-5"><img class="btn btn-link baozang" name="${data.id}" src="../img/${'${'}data.icoName}"></a><span class="col-xs-7 col-md-7">${data.id}<br>${data.desc}</span></div>
 		{{/each}}
 
 </script>
 <script type="text/javascript">
+    var downDataitemId = "";
     $(function () {
-        $('#myTabs a').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
+    	var id = '#'+${detailDataitemId};
+    	//alert(id);
+    	$(id).click();
+    	
+        $('#dataitemUi  a').click(function (e) { 
+        	
+        	downDataitemId=$(this).attr("id"); 
+         
+        	 var url=host+"/datahub/dataItemMgrAction!queryDataitem.action"  ; 
+         	jQuery.ajax({
+         		type: "POST",
+         		url:url,
+         		data: {"dataitemId":$(this).attr("id")},
+         		dataType: "json",
+         		success: function(result) {  
+         			$("#baozang-items").empty();
+                     $("#baozang-item").tmpl(result).appendTo('#baozang-items');  
+          
+                  	$("#detail_item_name").html(result.dataitem.dataitemName);
+                  	 $("#detailImg").attr("src","../img/"+result.dataitem.icoName);
+              
+                     $("#dataitemDesc").html(result.dataitem.comment);  
+                     $("#fileTypeId").html(result.dataitem.fileType);
+                     $("#refreshTypeId").html(result.dataitem.refreshType);
+                     $("#refreshDateId").html(result.dataitem.refreshDate); 
+                     $("#supplyStyleId").html(result.dataitem.supplyStyle); 
+                     
+                     //数据口径
+                     var dateList = result.fields;
+            
+                     var strHtml="";
+                     $.each(dateList,function(i){ 
+               
+                    	 strHtml+="<div class='row'><div  class='col-md-4'>"+dateList[i].fieldRawname+"</div><div  class='col-md-8'>"+dateList[i].fieldName+"</div></div>"                     
+                     });
+          
+                     $("#dataScope").html(strHtml); 
+                    
+         		}
+         	});
+         	//data download 
+         	var urlLoad=host+"/datahub/dataItemsAction!dataitemDown.action"  ; 
+         	 
+        	jQuery.ajax({
+         		type: "POST",
+         		url:urlLoad,
+         		data: {"dataitemId":$(this).attr("id")},
+         		dataType: "json",
+         		success: function(result) {
+         			var dateList = result[0].datas;
+         			$.each(dateList,function(i){  
+         		 
+         				var items = $('<input id="' + dateList[i].dataitemId + '" name="'+ dateList[i].dataDate + '" type="button" onclick="downLoad('+'\''+dateList[i].dataitemId+ '\',\'' + dateList[i].dataDate + '\')"  value="'+ dateList[i].dataDate+'"/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+         				
+         				 $("#downloadItems").append(items);
+                  	}); 
+         	    }
+         	});
+        
+            e.preventDefault();
+            $(this).tab('show');
+            
         });
+        
+        $("#filetypeLi").click(function(){
+         
+        	$("#filetypeLi").addClass('active');
+        	$("#home").addClass('active');
+        	$("#dataScopeLi").removeClass('active');
+        	$("#dataScope").removeClass('active');
+        })
+        
+        $("#dataScopeLi").click(function(){
+        	 
+        	$("#dataScopeLi").addClass('active');
+        	$("#dataScope").addClass('active');
+        	$("#home").removeClass('active');
+        	$("#filetypeLi").removeClass('active');
+        })
+         
     });
+    //数据下载功能
+     function downLoad(dataitemId,dataDate4){ 
+     
+    	var exportUrl=host+"/file/fileAction!download.action?dataitemId="+downDataitemId + "&downDate=" + dataDate4;
+    	window.open(exportUrl);
+    }
 </script>
 </html>

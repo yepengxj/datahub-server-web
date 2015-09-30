@@ -47,6 +47,26 @@ public class DataItemsAction extends BaseAction {
 	@Resource
 	private IDataItemsService dataItemsService;
 
+	public List<Dataitem> listDataItem;
+	public String detailDataitemId;
+ 
+ 
+	public String getDetailDataitemId() {
+		return detailDataitemId;
+	}
+
+	public void setDetailDataitemId(String detailDataitemId) {
+		this.detailDataitemId = detailDataitemId;
+	}
+
+	public List<Dataitem> getListDataItem() {
+		return listDataItem;
+	}
+
+	public void setListDataItem(List<Dataitem> listDataItem) {
+		this.listDataItem = listDataItem;
+	}
+
 	/**
 	 * 获取我的宝藏页面：我的记录 列表
 	 * 
@@ -123,7 +143,7 @@ public class DataItemsAction extends BaseAction {
 		log.debug("获取宝藏类型：" + tradeType + ", 用户ID: " + userId);
 		try {
 			List<Dataitem> list = dataItemsService.dataitemTypeList(tradeType,
-					userId);
+					userId,"");
 			Map map = new HashMap();
 			map.put("datas", list);
 			String jsonStr = JSONArray.fromObject(map).toString();
@@ -135,6 +155,24 @@ public class DataItemsAction extends BaseAction {
 		return null;
 	}
 
+	public String dataitemDown() {
+	 
+		String dataitemId = getRequest().getParameter("dataitemId"); 
+ 
+		log.debug("获取宝藏类型："+ dataitemId);
+		try {
+			List<Dataitem> list = dataItemsService.dataitemTypeList("2",
+					"",dataitemId);
+			Map map = new HashMap();
+			map.put("datas", list);
+			String jsonStr = JSONArray.fromObject(map).toString();
+			log.debug("获取的我的宝藏记录：" + jsonStr);
+			sendJson(getResponse(), jsonStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * 处理数据项下载请求
 	 * 
@@ -151,13 +189,13 @@ public class DataItemsAction extends BaseAction {
 	 * @return
 	 */
 	public String search() {
-		try { 
+		try {
 			this.getRequest().setCharacterEncoding("UTF-8");
 			String keyWord = getRequest().getParameter("keyword");// 关键字
-/*
-			if (StringUtils.isNotEmpty(keyWord)) {
-				keyWord = java.net.URLDecoder.decode(keyWord, "UTF-8");
-			}*/
+			/*
+			 * if (StringUtils.isNotEmpty(keyWord)) { keyWord =
+			 * java.net.URLDecoder.decode(keyWord, "UTF-8"); }
+			 */
 			List<Dataitem> list = dataItemsService.resSearch(keyWord);
 			Map map = new HashMap();
 			map.put("datas", list);
@@ -170,5 +208,22 @@ public class DataItemsAction extends BaseAction {
 		return null;
 
 	}
-
+	 
+	public String baozangDetail() {
+		log.debug("查询宝藏明细信息");
+		//this.detailDataitemId= this.getRequest().getParameter("");
+		try {
+			this.listDataItem = dataItemsService.resSearch("");
+			return "success";
+			// Map map = new HashMap();
+			// map.put("datas", list);
+			// String jsonStr = JSONArray.fromObject(map).toString();
+			// log.debug("获取搜索后数据宝藏：" + jsonStr);
+			// sendJson(getResponse(), jsonStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error";
+	}
+	 
 }

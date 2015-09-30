@@ -270,3 +270,51 @@ body {
     color: white;
 }
 
+.tab-content {
+    background-color: #eee;
+    /*box-sizing: content-box;*/
+    /*// padding:20px 0 20px;*/
+    /*height:auto;*/
+    /*overflow: hidden;*/
+    /*content:"";*/
+    /*display:table;*/
+    /*clear:both;*/
+}
+
+.tab-content .tab-pane .col-md-4, .tab-content .tab-pane .col-md-8 {
+    height: 35px;
+    line-height: 35px;
+    background: #FFF;
+}
+
+.tab-content .tab-pane {
+    padding: 15px;
+}
+
+.tab-content .tab-pane .row {
+    margin-left: 0;
+    margin-right: 0;
+
+}
+
+.tab-content .tab-pane .col-md-4 {
+    text-align: right;
+    padding-right: 20px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+
+.tab-content .tab-pane .col-md-8 {
+    text-align: left;
+    padding-left: 20px;
+    margin-left: 1px;
+    width: 66%
+}
+
+ul.nav-tabs {
+    margin-top: 10px;
+}
+
+ul.nav-tabs li.active a:link, ul.nav-tabs li.active a:link {
+    background-color: #eee !important;
+}

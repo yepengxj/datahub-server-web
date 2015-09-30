@@ -145,25 +145,38 @@ public class DataItemMgrAction extends BaseAction{
 		}
 		return null;
 	}
-	
+	/**
+	 * 数据项详细信息展示
+	 * @return
+	 */
 	public String updateDataitem(){
 		DataitemDto dataitemDto = new DataitemDto();
 		try {
 			dataitemDto = dataItemMgrService.queryDataitemDtoById(userId,repositoryId, dataitemId);
-		} catch (Exception e) {
+		} catch (Exception e) {          
 			log.error("com.asiainfo.bdx.datahub.dataitemmgr.action.DataItemMgrAction.updateDataitem:查询数据对象结果失败！");
-			log.error(e.getMessage());
+			e.printStackTrace();
 		}
 		
 		String listJson = JSONObject.fromObject(dataitemDto).toString();
         try {
 			sendJson(getResponse(), listJson.toString());
 		} catch (Exception e) {
+		
 			log.error("com.asiainfo.bdx.datahub.dataitemmgr.action.DataItemMgrAction.updateDataitem:查询数据对象结果失败！");
 			log.error(e.getMessage());
 		}
 		return null;
+		
 	}
+	/**
+	 * 数据项详细信息展示 
+	 */
+    public void queryDataitem(){
+    	this.userId = 0l;
+    	this.repositoryId = 0l;
+    	this.updateDataitem();
+    }
 	
 	/**
 	 * 修改数据对象

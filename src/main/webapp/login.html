@@ -171,7 +171,7 @@
 			<input name="pwd" class="" type="password" placeholder="密码"></input>
     	</div>
     	<div style="margin-top:10px;">
-			<input id="submit" type="button" class="btn btn-default" value="登 录">
+			<input id="submit" type="button" class="btn btn-default" onclick="submitfn()" value="登 录">
             <div style="margin-top:10px" class="pull-right" ><a id="forgetpwd" href="forgetpass.html">忘记密码？</a>&nbsp;|&nbsp;<a id="editpwd" href="editpass.html">修改密码</a></div>
         </div>
     </form>
@@ -188,13 +188,11 @@
   </body>
   <script type="text/javascript">
   $(function(){
-	  $("input[name='pwd']").keyup(function (e) {
+	  $(".login-form input").keyup(function (e) {
 		  if (e.keyCode == 13) {
 			  submitfn();
 		  }
 	  });
-	  $("#submit").click(submitfn());
-	  $("#submit").keyup(submitfn());
   });
   function submitfn() {
 	  var data = {};

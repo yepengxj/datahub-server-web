@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -25,13 +26,24 @@ public class FileAction extends BaseAction {
 	//记录上传和下载日志（即购买）使用
 	private Long dataitemId;
 	
+	/**
+	 * 刷新周期类型
+	 */
+	private String refreshType;
+	/**
+	 * 上传周期
+	 */
+	private Date refreshDate;
+	
     private File file;
     
     private String fileFileName;
     
     private String fileFileContentType;
     
-    private String message = "0"; // 0格式错误 1成功(文件路径)  2失败
+    private String status = "0"; // 0格式错误;1成功(文件路径);2失败
+    
+    private String message;//返回信息
     
     private String filePath;
     
@@ -65,8 +77,22 @@ public class FileAction extends BaseAction {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+    
+    /**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
 
-    public String getMessage() {
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getMessage() {
         return message;
     }
 
@@ -74,7 +100,35 @@ public class FileAction extends BaseAction {
         this.message = message;
     }
 
-    public File getFile() {
+    /**
+	 * @return the refreshType
+	 */
+	public String getRefreshType() {
+		return refreshType;
+	}
+
+	/**
+	 * @param refreshType the refreshType to set
+	 */
+	public void setRefreshType(String refreshType) {
+		this.refreshType = refreshType;
+	}
+
+	/**
+	 * @return the refreshDate
+	 */
+	public Date getRefreshDate() {
+		return refreshDate;
+	}
+
+	/**
+	 * @param refreshDate the refreshDate to set
+	 */
+	public void setRefreshDate(Date refreshDate) {
+		this.refreshDate = refreshDate;
+	}
+
+	public File getFile() {
         return file;
     }
 
@@ -106,6 +160,7 @@ public class FileAction extends BaseAction {
     @SuppressWarnings("deprecation")
     @Override
     public String execute() throws Exception {
+    	String refreshDateStr = new SimpleDateFormat("yyyy-MM-dd").format(refreshDate);
     	uploadPath = DHConstants.DATAFILE_UPLOADPATH;
     	if(StringUtils.isEmpty(uploadPath)){//如果在在cfg.properties中没有配置DATAFILE_UPLOADPATH，则设置默认变量
     		uploadPath = ServletActionContext.getRequest().getRealPath("/upload");
@@ -114,11 +169,19 @@ public class FileAction extends BaseAction {
         if (!file.exists()) {
             file.mkdir();
         }
-        file = new File(uploadPath + "\\" + dataitemId); // 判断文件夹是否存在,如果不存在则创建文件夹
+        file = new File(uploadPath + "/" + dataitemId); // 判断文件夹是否存在,如果不存在则创建文件夹
         if (!file.exists()) {
             file.mkdir();
         }
-        String[] fileSuffix = new String[] { "exe" };// 禁止文件
+        
+        file = new File(uploadPath + "/" + dataitemId + "/" + refreshDateStr); // 判断文件夹是否存在,如果不存在则创建文件夹
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        String absolutePath = uploadPath + "/" + dataitemId + "/" + refreshDateStr + "/";
+        String relativePath = "/" + dataitemId + "/" + refreshDateStr + "/";
+        
+        //String[] fileSuffix = new String[] { "exe" };// 禁止文件
         String[] permitFileSuffix = {};
         if(StringUtils.isNotEmpty(DHConstants.PERMIT_UPLOAD_FILE_TYPE)){
         	permitFileSuffix = DHConstants.PERMIT_UPLOAD_FILE_TYPE.toLowerCase().split(",");
@@ -135,21 +198,23 @@ public class FileAction extends BaseAction {
                 }
             }
             if(!canUpload){
-            	message = "0";
+            	status = "0";
+            	message = "只允许上传的文件格式为：" + DHConstants.PERMIT_UPLOAD_FILE_TYPE;
                 return ERROR;
             }
-            for(int j = 0;j < fileSuffix.length;j++){
+           /* for(int j = 0;j < fileSuffix.length;j++){
             	if (fileFileName.endsWith(fileSuffix[j])) {
-                    message = "0";
+            		status = "0";
+            		message = "只允许上传的文件格式为：" + DHConstants.PERMIT_UPLOAD_FILE_TYPE;
                     return ERROR;
                 }
-            }
+            }*/
             FileInputStream inputStream = new FileInputStream(f);
             if(dataitemId == 0l){
             	dataitemId = 0l;
             }
-            FileOutputStream outputStream = new FileOutputStream(uploadPath
-            		 + "\\" + dataitemId + "\\" + fileFileName);
+            String filePath = absolutePath + fileFileName;
+            FileOutputStream outputStream = new FileOutputStream(filePath);
             byte[] buf = new byte[1024];
             int length = 0;
             while ((length = inputStream.read(buf)) != -1) {
@@ -157,34 +222,45 @@ public class FileAction extends BaseAction {
             }
             inputStream.close();
             outputStream.flush();
-            message = uploadPath + "\\" + this.getFileFileName();
+            status = "1";
+            message = filePath;
             
             /*
              * 记录上传日志
              */
             Dataitem dataitem = new Dataitem();
+            
             dataitem.setDataitemId(dataitemId);
-            dataitem.setSampleFilename(fileFileName);
+            //dataitem.setSampleFilename(filePath);
             dataitem.setFileType(StringUtils.isNoneEmpty(fileFileName) 
             		? "未知" : fileFileName.substring(fileFileName.lastIndexOf(".") + 1));
-            dataitem.setRefreshDate(new Date());
-            dataItemMgrService.insertUploadLog(dataitem);
+            dataitem.setRefreshDate(refreshDate);
+            dataItemMgrService.insertUploadLog(dataitem,relativePath + fileFileName);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "2";
+            status = "2";
+            message = "上传失败，请稍后重试！";
         }
         return SUCCESS;
     }
 
     public String download() throws Exception {
         HttpServletResponse response = ServletActionContext.getResponse();
+        String downDate = this.getRequest().getParameter("downDate");
+        
         try {
         	//查找文件名
-        	Dataitem dataitem = dataItemMgrService.queryDataitemById(dataitemId);
-        	String sampleFilename = dataitem.getSampleFilename();
-        	
+        	String sampleFilename  = dataItemMgrService.queryDataitemById(dataitemId);
+        	//String sampleFilename = dataitem.getSampleFilename();
+        	if (!StringUtils.isNotEmpty(sampleFilename)) {
+        		throw  new Exception("样例文件路径为空");
+        	}
+        	uploadPath = DHConstants.DATAFILE_UPLOADPATH;
+        	if(StringUtils.isEmpty(uploadPath)){//如果在在cfg.properties中没有配置DATAFILE_UPLOADPATH，则设置默认变量
+        		uploadPath = ServletActionContext.getRequest().getRealPath("/upload");
+        	}
         	//拼接文件全局路径
-        	filePath = uploadPath + "\\" + dataitemId + "\\" + sampleFilename;
+        	filePath = uploadPath + File.separator  + dataitemId + File.separator +downDate+sampleFilename;
         	
             // path是指欲下载的文件的路径。
             File file = new File(filePath);

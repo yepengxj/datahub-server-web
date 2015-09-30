@@ -32,14 +32,14 @@
 
 	<package name="datahub" extends="struts-default" namespace="/datahub">
 
-		<!--  <interceptors>
+		<interceptors>
                 <interceptor name="authorityInterceptor" class="authorityInterceptor"></interceptor>
                 <interceptor-stack name="authorityInterceptorStack">
                     <interceptor-ref name="authorityInterceptor"></interceptor-ref>
                     <interceptor-ref name="defaultStack"/>
                 </interceptor-stack>
             </interceptors>
-            <default-interceptor-ref name="authorityInterceptorStack"/>-->
+		<default-interceptor-ref name="authorityInterceptorStack"/>
 		<global-results>
 			<result name="login" type="redirect">/login.html</result>
 		</global-results>
@@ -61,7 +61,7 @@
 		</action>
 		<action name="dataItemsAction!*" method="{1}"
 			class="com.asiainfo.bdx.datahub.repositorymgr.action.DataItemsAction">
-			<result name="success">/dataItems/{1}.jsp</result>
+			<result name="success">/my/baozangDetail.jsp</result>
 		</action>
 	</package>
 

@@ -27,7 +27,7 @@ public interface IDataItemsDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Dataitem> getDataItemsByDownload(String userId) throws Exception;
+	public List<Dataitem> getDataItemsByDownload(String userId,String dataitemId) throws Exception;
 	
 	/**
 	 * 根据关键字查询数据宝藏
