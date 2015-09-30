@@ -30,9 +30,19 @@ public class RepositoryMgrServiceImpl implements IRepositoryMgrService {
     @Resource
     private IRepositoryMgrDao repositoryMgrDao;
 
-    public List getRepositories() {
+    /**
+     * 获取交易信息及宝藏信息
+     *
+     * @param userId
+     * @param keyWord
+     * @param tradeType
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public List getRepositories(String userId, String keyWord, String tradeType, String startTime, String endTime) {
 
-        List list = repositoryMgrDao.getRepositories("", "");
+        List list = repositoryMgrDao.getRepositories(userId, keyWord, tradeType, startTime, endTime);
         return list;
     }
 }

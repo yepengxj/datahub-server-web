@@ -11,7 +11,7 @@
     </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*</url-pattern>
     </filter-mapping>
 
     <!-- spring配置文件位置 -->
@@ -48,6 +48,19 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>-->
     
+    <!-- log4j -->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jRefreshInterval</param-name>
+        <param-value>3000</param-value>
+    </context-param>
+    <!-- 先开启Log4J,再去启动spring等一些你需要的东西，有助于报错时日志的输出 -->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
     <!--配置初始化页面-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

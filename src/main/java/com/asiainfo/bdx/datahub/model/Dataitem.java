@@ -24,11 +24,31 @@ public class Dataitem implements java.io.Serializable {
 	private Long priceunitType;
 	private Double price;
 	private Date optime;
+	private String fileType;
 	private Integer refreshType;
+	private Date refreshDate;
 	private String sampleFilename;
 	private String comment;
+	private String tradeType;
+	private String strRefreshtype;
+	private String dataDate;
 
-	// Constructors
+	public String getDataDate() {
+		return dataDate;
+	}
+
+	public void setDataDate(String dataDate) {
+		this.dataDate = dataDate;
+	}
+
+	public String getStrRefreshtype() {
+		return strRefreshtype;
+	}
+
+	public void setStrRefreshtype(String strRefreshtype) {
+		this.strRefreshtype = strRefreshtype;
+	}
+// Constructors
 
 	/** default constructor */
 	public Dataitem() {
@@ -43,8 +63,8 @@ public class Dataitem implements java.io.Serializable {
 	/** full constructor */
 	public Dataitem(Long repositoryId, Long userId, Long dataitemId,
 			String dataitemName, String tag, Integer permitType,
-			Integer supplyStyle, Long priceunitType, Double price, Date optime,
-			Integer refreshType, String sampleFilename, String comment) {
+			Integer supplyStyle, Long priceunitType, Double price, Date optime,String fileType,
+			Integer refreshType,Date refreshDate, String sampleFilename, String comment) {
 		this.repositoryId = repositoryId;
 		this.userId = userId;
 		this.dataitemId = dataitemId;
@@ -55,7 +75,9 @@ public class Dataitem implements java.io.Serializable {
 		this.priceunitType = priceunitType;
 		this.price = price;
 		this.optime = optime;
+		this.fileType = fileType;
 		this.refreshType = refreshType;
+		this.refreshDate = refreshDate;
 		this.sampleFilename = sampleFilename;
 		this.comment = comment;
 	}
@@ -141,6 +163,20 @@ public class Dataitem implements java.io.Serializable {
 	public void setOptime(Date optime) {
 		this.optime = optime;
 	}
+	
+	/**
+	 * @return the fileType
+	 */
+	public String getFileType() {
+		return fileType;
+	}
+
+	/**
+	 * @param fileType the fileType to set
+	 */
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
 
 	public Integer getRefreshType() {
 		return this.refreshType;
@@ -148,6 +184,20 @@ public class Dataitem implements java.io.Serializable {
 
 	public void setRefreshType(Integer refreshType) {
 		this.refreshType = refreshType;
+	}
+
+	/**
+	 * @return the refreshDate
+	 */
+	public Date getRefreshDate() {
+		return refreshDate;
+	}
+
+	/**
+	 * @param refreshDate the refreshDate to set
+	 */
+	public void setRefreshDate(Date refreshDate) {
+		this.refreshDate = refreshDate;
 	}
 
 	public String getSampleFilename() {
@@ -166,4 +216,11 @@ public class Dataitem implements java.io.Serializable {
 		this.comment = comment;
 	}
 
+	public String getTradeType() {
+		return tradeType;
+	}
+
+	public void setTradeType(String tradeType) {
+		this.tradeType = tradeType;
+	}
 }

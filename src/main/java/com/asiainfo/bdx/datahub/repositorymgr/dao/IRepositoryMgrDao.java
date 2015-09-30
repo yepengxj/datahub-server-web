@@ -22,6 +22,6 @@ import java.util.List;
  */
 public interface IRepositoryMgrDao {
 
-    public List getRepositories(String userid, String keyWord);
+    public List getRepositories(String userid, String keyWord, String tradeType, String startTime, String endTime);
 
 }

@@ -21,5 +21,6 @@ import java.util.List;
  * @author bob
  */
 public interface IRepositoryMgrService {
-    public List getRepositories();
+
+    public List getRepositories(String userid, String keyWord, String tradeType, String startTime, String endTime);
 }

@@ -138,4 +138,12 @@
         <aop:pointcut id="transactionPointcut" expression="execution(* com.asiainfo.bdx.datahub..*.service.*..*Impl.*(..))"/>
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
     </aop:config>
+
+    <!--登录拦截器-->
+    <bean name="authorityInterceptor"
+          class="com.asiainfo.bdx.datahub.common.AuthorityInterceptor">
+        <property name="excludedUrl"
+                  value=".*index.jsp.*;.*login.*;.*verifyUser.jsp.*;.*/sendpwd.jsp.*;.*/showValidateCode.*;.*/services/.*;.*/css/.*;.*/jscript/.*;.*/images/.*;.*/dwr/.*;.*\.js;.*\.css;.*\.gif;.*\.png;.*\.bmp;.*\.swf;.*\.jpg;.*\.ico"/>
+    </bean>
+
 </beans>

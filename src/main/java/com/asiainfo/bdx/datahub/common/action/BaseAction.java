@@ -1,10 +1,14 @@
 package com.asiainfo.bdx.datahub.common.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * Title :
@@ -24,8 +28,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author bob
  */
-public class BaseAction extends ActionSupport{
+public class BaseAction extends ActionSupport implements SessionAware {
 
+    private static final Log log = LogFactory.getLog(BaseAction.class);
+    private Map session;
     /**
      * 返回json信息给客户端
      *
@@ -63,7 +69,20 @@ public class BaseAction extends ActionSupport{
      *
      * @return the session from the request (request.getSession()).
      */
-    protected HttpSession getSession() {
-        return getRequest().getSession();
+    protected String getSessionUserId() {
+        log.debug("getsesion");
+        /*Map session=this.context.getSession();*/
+        Object userId = null;
+        try {
+            userId = session.get("DH_SESSION");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        log.debug("base Action sessionuserId222:" + String.valueOf(userId));
+        return String.valueOf(userId);
+    }
+
+    public void setSession(Map<String, Object> map) {
+        this.session = map;
     }
 }

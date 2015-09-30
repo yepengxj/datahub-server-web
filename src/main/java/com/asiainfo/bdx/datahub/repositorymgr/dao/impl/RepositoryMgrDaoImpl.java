@@ -28,11 +28,21 @@ import java.util.List;
 @Repository
 public class RepositoryMgrDaoImpl extends BaseJdbcDao implements IRepositoryMgrDao {
 
-    @Override
-    public List getRepositories(String userid, String keyWord) {
+
+    /**
+     * 获取交易信息及宝藏信息
+     *
+     * @param userId
+     * @param keyWord
+     * @param tradeType
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public List getRepositories(String userId, String keyWord, String tradeType, String startTime, String endTime) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from dh_repository");
+        sb.append("select * from DH_REPOSITORY");
         List list = null;
         try {
             list = getJdbcTemplate().queryForList(sb.toString());
